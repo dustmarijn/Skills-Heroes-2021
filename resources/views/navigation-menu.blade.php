@@ -11,9 +11,15 @@
                 </div>
 
                 <!-- Navigation Links -->
+                    {{--        The navigation links with the jetstream style        --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Score Opgave') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('results') }}" :active="request()->routeIs('results')">
+                        {{ __('Score uitslag') }}
                     </x-jet-nav-link>
                 </div>
             </div>

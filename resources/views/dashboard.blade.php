@@ -5,17 +5,24 @@
         </h2>
     </x-slot>
 
+    {{--  a status notification that the data form the form is correctly saved.  --}}
+    <div class="p5">
     @if(session('status'))
         <div class="alert alert-success">
             {{ session('status') }}
         </div>
     @endif
+    </div>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-3">
-                <form name="form" style="max-width: 50%;" id="form" method="post" action="{{url('store-form')}}">
+                {{--       a form that posts it data to the controller linked page         --}}
+                <form name="form" class="form-style" id="form" method="post" action="{{url('store-form')}}">
+                    {{--       a from saftey key           --}}
                     @csrf
+
+                    {{--            information fill in form           --}}
                     <div class="mt-2">
                         <h1>Naam</h1>
                         <div class="p-2">
@@ -106,31 +113,6 @@
 
 
                 </form>
-
-                <div class="container mt-4">
-                    @if(session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    <div class="card">
-                        <div class="card-header text-center font-weight-bold">
-                            Laravel 8 - Add Blog Post Form Example
-                        </div>
-                        <div class="card-body">
-                            <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('store-form')}}">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Title</label>
-                                    <input type="text" id="title" name="title" class="form-control" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Description</label>
-                                    <textarea name="description" class="form-control" required=""></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
                     </div>
                 </div>
             </div>

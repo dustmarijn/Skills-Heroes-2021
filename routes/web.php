@@ -1,7 +1,6 @@
 <?php
-
+// routes to the controller class that links it directly to the pages.
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\saveData;
 use App\Http\Controllers\PostController;
 
 /*
@@ -15,17 +14,15 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//    return view('dashboard');
-//})->name('dashboard');
-
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [PostController::class, 'index'], function () {
+// a route that makes the dashboard page your main page, and a route to the controller that displays the content.
+Route::middleware(['auth:sanctum', 'verified'])->get('/', [PostController::class, 'index'], function () {
     return view('dashboard');
 })->name('dashboard');
 
+// a route to save the data form the form with a connection to a controller that sends the data to the database
 Route::post('store-form', [PostController::class, 'store']);
+
+// a route the page where the results are shown.
+Route::middleware(['auth:sanctum', 'verified'])->get('/results', function () {
+    return view('results');
+})->name('results');

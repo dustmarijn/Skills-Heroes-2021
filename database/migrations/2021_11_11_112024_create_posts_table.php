@@ -14,6 +14,7 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
+//            Variables can be saved in the database by giving it the id names.
             $table->id();
             $table->timestamps();
             $table->text('firstname');
