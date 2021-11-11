@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\saveData;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [PostController::class, 'index'], function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::post('store-form', [PostController::class, 'store']);

@@ -5,23 +5,30 @@
         </h2>
     </x-slot>
 
+    @if(session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-3">
-                <form style="max-width: 50%;">
+                <form name="form" style="max-width: 50%;" id="form" method="post" action="{{url('store-form')}}">
+                    @csrf
                     <div class="mt-2">
                         <h1>Naam</h1>
                         <div class="p-2">
-                            <label for="Voornaam">Naam van Student</label>
+                            <label for="firstname">Naam van Student</label>
                             <div class="row">
                                 <div class="col">
                                     <input type="text" class="form-control" placeholder="Voornaam" aria-label="Voornaam"
-                                           id="lastname" required>
+                                           name="firstname" required>
                                 </div>
                                 <div class="col">
                                     <input type="text" class="form-control" placeholder="Achternaam"
                                            aria-label="Achternaam"
-                                           id="lastname" required>
+                                           name="lastname" required>
                                 </div>
                             </div>
                         </div>
@@ -30,12 +37,12 @@
                     <div class="mt-4">
                         <h1>Ja/Nee</h1>
                         <div class="p-2">
-                            <label for="yes-no-points">Aantal te behalen punten</label>
+                            <label for="yes_no_points">Aantal te behalen punten</label>
                             <input type="number" class="form-control" placeholder="Punten"
                                    aria-label="Punten"
-                                   id="yes-no-points" required>
-                            <label for="yes-no-dropdown" class="mt-1">Dropdown</label>
-                            <select class="form-select" aria-label="yes-no-dropdown" id="yes-no-dropdown" required>
+                                   name="yes_no_points" required>
+                            <label for="yes_no_dropdown" class="mt-1">Dropdown</label>
+                            <select class="form-select" aria-label="yes-no-dropdown" name="yes_no_dropdown" required>
                                 <option selected>Ja of Nee?</option>
                                 <option value="yes">Ja</option>
                                 <option value="no">Nee</option>
@@ -46,50 +53,50 @@
                     <div class="mt-4">
                         <h1>Subjectief</h1>
                         <div class="p-2">
-                            <label for="subjective-points">Aantal te behalen punten</label>
+                            <label for="subjective_points">Aantal te behalen punten</label>
                             <input type="number" class="form-control" placeholder="Punten"
                                    aria-label="Punten"
-                                   id="subjective-points" required>
+                                   name="subjective_points" required>
 
-                            <label for="subjective-jury-1" class="mt-1">Score Jurylid 1</label>
+                            <label for="subjective_jury_1" class="mt-1">Score Jurylid 1</label>
                             <input type="number" class="form-control" placeholder="Punten van Jurylid 1 (0-10)"
                                    aria-label="Punten"
-                                   id="subjective-jury-1" max="10" min="0" required>
+                                   name="subjective_jury_1" max="10" min="0" required>
 
-                            <label for="subjective-jury-2" class="mt-1">Score Jurylid 2</label>
+                            <label for="subjective_jury_2" class="mt-1">Score Jurylid 2</label>
                             <input type="number" class="form-control" placeholder="Punten van Jurylid 2 (0-10)"
                                    aria-label="Punten"
-                                   id="subjective-jury-2" max="10" min="0" required>
+                                   name="subjective_jury_2" max="10" min="0" required>
                         </div>
                     </div>
 
                     <div class="mt-4">
                         <h1>Nominaal</h1>
                         <div class="p-2">
-                            <label for="Nominal-points">Aantal te behalen punten</label>
+                            <label for="nominal_points">Aantal te behalen punten</label>
                             <input type="number" class="form-control" placeholder="Punten"
                                    aria-label="Punten"
-                                   id="Nominal-points" required>
+                                   name="nominal_points" required>
 
-                            <label for="Nominal-needed" class="mt-1">Benodigde waarde</label>
+                            <label for="nominal_needed" class="mt-1">Benodigde waarde</label>
                             <input type="text" class="form-control" placeholder="Benodigde waarde"
                                    aria-label="Benodigde waarde"
-                                   id="Nominal-needed" required>
+                                   name="nominal_needed" required>
 
-                            <label for="Nominal-deviation" class="mt-1">Toegestane afwijking</label>
+                            <label for="nominal_deviation" class="mt-1">Toegestane afwijking</label>
                             <input type="text" class="form-control" placeholder="Toegestane afwijking"
                                    aria-label="Toegestane afwijking"
-                                   id="Nominal-deviation" required>
+                                   name="nominal_deviation" required>
 
-                            <label for="Nominal-deviation-points" class="mt-1">Punten aftrek per afwijking van</label>
+                            <label for="nominal_deviation_points" class="mt-1">Punten aftrek per afwijking van</label>
                             <input type="text" class="form-control" placeholder="Punten aftrek per afwijking"
                                    aria-label="Punten aftrek per afwijking"
-                                   id="Nominal-deviation-points" required>
+                                   name="nominal_deviation_points" required>
 
-                            <label for="Nominal-deviation-points" class="mt-1">Aantal punten aftrek per afwijking</label>
+                            <label for="nominal_deviation_points_number" class="mt-1">Aantal punten aftrek per afwijking</label>
                             <input type="text" class="form-control" placeholder="Aantal punten aftrek per afwijking"
                                    aria-label="Aantal punten aftrek per afwijking"
-                                   id="Nominal-deviation-points" required>
+                                   name="nominal_deviation_points_number" required>
                         </div>
                     </div>
 
@@ -99,6 +106,33 @@
 
 
                 </form>
+
+                <div class="container mt-4">
+                    @if(session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <div class="card">
+                        <div class="card-header text-center font-weight-bold">
+                            Laravel 8 - Add Blog Post Form Example
+                        </div>
+                        <div class="card-body">
+                            <form name="add-blog-post-form" id="add-blog-post-form" method="post" action="{{url('store-form')}}">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input type="text" id="title" name="title" class="form-control" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Description</label>
+                                    <textarea name="description" class="form-control" required=""></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
